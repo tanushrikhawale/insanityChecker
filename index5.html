@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our 1-Year Love Story 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(-45deg, #ffafbd, #ffc3a0, #a1c4fd, #c2e9fb);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #5a3d5c;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0;
+            animation: floatAround 8s infinite linear;
+        }
+
+        @keyframes floatAround {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 40px;
+        }
+
+        .main-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4.5rem;
+            color: #d32f2f; /* Changed to red as requested */
+            margin-bottom: 15px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from { text-shadow: 0 0 20px rgba(211, 47, 47, 0.5); }
+            to { text-shadow: 0 0 30px rgba(255, 0, 0, 0.8); }
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: #7a5b7c;
+            margin-bottom: 40px;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        /* Counter Section */
+        .counter-section {
+            text-align: center;
+            margin: 40px 0;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            margin-bottom: 60px;
+        }
+
+        .counter-section h2 {
+            color: #d32f2f; /* Changed to red */
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        .counter {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .time-unit {
+            background: linear-gradient(45deg, #d32f2f, #f44336); /* Changed to red gradient */
+            padding: 25px 20px;
+            border-radius: 15px;
+            min-width: 120px;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(211, 47, 47, 0.3);
+        }
+
+        .time-unit:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(211, 47, 47, 0.4);
+        }
+
+        .time-unit span {
+            font-size: 3rem;
+            font-weight: bold;
+            display: block;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .time-unit small {
+            font-size: 1rem;
+            opacity: 0.9;
+            letter-spacing: 1px;
+        }
+
+        /* Polaroid Gallery */
+        .polaroid-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+
+        .polaroid-container {
+            perspective: 1000px;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 15px 15px 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+            position: relative;
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .polaroid::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: #f0f0f0;
+            border-radius: 50%;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .polaroid-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            margin-bottom: 15px;
+            filter: sepia(0.2) brightness(0.95);
+            transition: all 0.5s ease;
+        }
+
+        .polaroid:hover .polaroid-img {
+            filter: sepia(0) brightness(1.05);
+            transform: scale(1.02);
+        }
+
+        .polaroid-content {
+            padding: 0 10px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .polaroid-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #d32f2f; /* Changed to red */
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .polaroid-text {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #5a3d5c;
+            text-align: center;
+        }
+
+        /* Different rotations for polaroids */
+        .polaroid-container:nth-child(odd) .polaroid {
+            transform: rotate(-2deg);
+        }
+
+        .polaroid-container:nth-child(even) .polaroid {
+            transform: rotate(2deg);
+        }
+
+        .polaroid-container:nth-child(3n) .polaroid {
+            transform: rotate(1deg);
+        }
+
+        .polaroid-container:nth-child(5n) .polaroid {
+            transform: rotate(-3deg);
+        }
+
+        .polaroid-container:hover .polaroid {
+            transform: rotate(0deg) translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Love Letter Section */
+        .love-letter {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 50px;
+            border-radius: 20px;
+            margin: 40px 0;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #d32f2f; /* Changed to red */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .love-letter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #d32f2f, #f44336, #ff5252); /* Changed to red gradient */
+        }
+
+        .letter-content h3 {
+            color: #d32f2f; /* Changed to red */
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            text-align: center;
+        }
+
+        .letter-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .signature {
+            text-align: right;
+            font-style: italic;
+            margin-top: 30px;
+            font-size: 1.2rem;
+            font-family: 'Dancing Script', cursive;
+            font-weight: bold;
+        }
+
+        /* Reasons Section */
+        .reasons-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 50px;
+            border-radius: 20px;
+            margin: 40px 0;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .reasons-section h2 {
+            text-align: center;
+            color: #d32f2f; /* Changed to red */
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .reason-item {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid #d32f2f; /* Changed to red */
+        }
+
+        .reason-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .reason-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .reason-item h4 {
+            color: #d32f2f; /* Changed to red */
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        /* Music Section */
+        .music-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 50px;
+            border-radius: 20px;
+            margin: 40px 0;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .music-section h2 {
+            text-align: center;
+            color: #d32f2f; /* Changed to red */
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .songs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .song-item {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: rgba(211, 47, 47, 0.1); /* Changed to red */
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .song-item:hover {
+            transform: translateX(10px);
+            border-left: 4px solid #d32f2f; /* Changed to red */
+            background: rgba(211, 47, 47, 0.15);
+        }
+
+        .song-emoji {
+            font-size: 2rem;
+            margin-right: 20px;
+        }
+
+        /* Future Section */
+        .future-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 50px;
+            border-radius: 20px;
+            margin: 40px 0;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .future-section h2 {
+            text-align: center;
+            color: #d32f2f; /* Changed to red */
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .future-dreams ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .future-dreams li {
+            padding: 15px 0;
+            font-size: 1.2rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .future-dreams li::before {
+            content: '❤️';
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        /* Final Message */
+        .final-message {
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(45deg, #d32f2f, #f44336); /* Changed to red gradient */
+            color: white;
+            border-radius: 20px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(211, 47, 47, 0.3);
+        }
+
+        .final-message::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .heart-pulse {
+            font-size: 4rem;
+            animation: pulse 2s ease-in-out infinite;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .final-message h3 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .sign-off {
+            margin-top: 30px;
+            position: relative;
+        }
+
+        .sign-off h4 {
+            font-size: 1.8rem;
+            margin-top: 10px;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* Fade-in Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Stagger animations */
+        .fade-in:nth-child(1) { animation-delay: 0.2s; }
+        .fade-in:nth-child(2) { animation-delay: 0.4s; }
+        .fade-in:nth-child(3) { animation-delay: 0.6s; }
+        .fade-in:nth-child(4) { animation-delay: 0.8s; }
+        .fade-in:nth-child(5) { animation-delay: 1s; }
+        .fade-in:nth-child(6) { animation-delay: 1.2s; }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 3rem;
+            }
+            
+            .counter {
+                gap: 15px;
+            }
+            
+            .time-unit {
+                min-width: 100px;
+                padding: 20px 15px;
+            }
+            
+            .time-unit span {
+                font-size: 2.5rem;
+            }
+            
+            .love-letter, .reasons-section, .music-section, .future-section {
+                padding: 30px 20px;
+            }
+            
+            .polaroid-gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .polaroid-container .polaroid {
+                transform: rotate(0deg) !important;
+            }
+            
+            .polaroid-container:hover .polaroid {
+                transform: translateY(-10px) !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Elements -->
+    <div class="floating-elements"></div>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <header class="fade-in">
+            <h1 class="main-title">Happy 1-Year Anniversary, My Love! 💕</h1>
+            <p class="subtitle">365 days of loving you, and it's only the beginning...</p>
+        </header>
+
+        <!-- Time Counter -->
+        <div class="counter-section fade-in">
+            <h2>⏳ Our Time Together:</h2>
+            <div class="counter" id="timeCounter">
+                <div class="time-unit">
+                    <span id="days">0</span>
+                    <small>Days</small>
+                </div>
+                <div class="time-unit">
+                    <span id="hours">0</span>
+                    <small>Hours</small>
+                </div>
+                <div class="time-unit">
+                    <span id="minutes">0</span>
+                    <small>Minutes</small>
+                </div>
+                <div class="time-unit">
+                    <span id="seconds">0</span>
+                    <small>Seconds</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Polaroid Gallery -->
+        <div class="polaroid-gallery">
+            <!-- Memory 1 -->
+            <div class="polaroid-container fade-in">
+                <div class="polaroid">
+                    <img src="https://i.pinimg.com/736x/bc/87/75/bc8775e0d865b16ed58d26a5bf08c23e.jpg" alt="Our first meeting" class="polaroid-img">
+                    <div class="polaroid-content">
+                        <h3 class="polaroid-title">The Day We Met</h3>
+                        <p class="polaroid-text">September 26, 2024 - the day my world gained color. I'll never forget how it was a complete chaos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Memory 2 -->
+            <div class="polaroid-container fade-in">
+                <div class="polaroid">
+                    <img src="https://i.pinimg.com/736x/e1/4d/83/e14d83cfd09404e1d30fe0747f369fd8.jpg" alt="Our first laugh" class="polaroid-img">
+                    <div class="polaroid-content">
+                        <h3 class="polaroid-title">Our First Laugh Together</h3>
+                        <p class="polaroid-text">That time we couldn't stop talking. I knew then that I wanted to hear that sound every day.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Memory 3 -->
+            <div class="polaroid-container fade-in">
+                <div class="polaroid">
+                    <img src="https://i.pinimg.com/736x/67/8f/2b/678f2bd11785c04b65822d7eff38b012.jpg" alt="Deep conversations" class="polaroid-img">
+                    <div class="polaroid-content">
+                        <h3 class="polaroid-title">Late Night Conversations</h3>
+                        <p class="polaroid-text">Those nights we talked until sunrise, sharing our dreams, fears, and everything in between. You became my safe space.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Memory 4 -->
+            <div class="polaroid-container fade-in">
+                <div class="polaroid">
+                    <img src="https://i.pinimg.com/736x/5f/2f/3e/5f2f3eb23c7d9c87c6ea431d184c4fd8.jpg" alt="Future dreams" class="polaroid-img">
+                    <div class="polaroid-content">
+                        <h3 class="polaroid-title">Our Future Dreams</h3>
+                        <p class="polaroid-text">I dream of taking millions more photos together, watching sunsets hand in hand, and building a home filled with love.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Memory 5 -->
+            <div class="polaroid-container fade-in">
+                <div class="polaroid">
+                    <img src="https://i.pinimg.com/736x/ac/43/cb/ac43cbcea13eacd065152f7b7782760f.jpg" alt="Special moments" class="polaroid-img">
+                    <div class="polaroid-content">
+                        <h3 class="polaroid-title">Special Moments</h3>
+                        <p class="polaroid-text">Every moment with you is special. Your smile brightens my darkest days, your voice comforts me like a warm blanket.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Memory 6 -->
+            <div class="polaroid-container fade-in">
+                <div class="polaroid">
+                    <img src="https://i.pinimg.com/736x/37/92/f0/3792f0bcc7f92f21738845969e65f398.jpg" alt="Our love" class="polaroid-img">
+                    <div class="polaroid-content">
+                        <h3 class="polaroid-title">Our Eternal Love</h3>
+                        <p class="polaroid-text">This is just the beginning of our forever. I can't wait to see what the next year, and all the years after that, have in store for us.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Love Letter Section -->
+        <section class="love-letter fade-in">
+            <div class="letter-content">
+                <h3>💌 My Dearest Anshuu,</h3>
+                <p>One year ago, on a beautiful September day, my life changed forever when I met you. I remember thinking, "This is different. This feels like home."</p>
+                
+                <p>365 days later, I can confidently say that was the best day of my life. You've brought so much joy, laughter, and love into my world. Your smile brightens my darkest days, your voice comforts me like a warm blanket, and your presence makes everything better.</p>
+                
+                <p>I love how we can talk for hours about everything and nothing. I love our inside jokes, our shared dreams, and even our silly arguments that always end with us laughing. I love how you remember the little things I say and how you always know exactly what I need.</p>
+                
+                <p>This past year has been the most beautiful journey. From our first nervous conversations to now, where I can't imagine a day without hearing your voice. You've become my best friend, my confidant, and the love of my life.</p>
+                
+                <p>Thank you for being you - kind, patient, funny, and incredibly loving. Thank you for choosing me every day. Thank you for loving me in ways I never knew I needed to be loved.</p>
+                
+                <p>This is just the beginning of our forever. I can't wait to see what the next year, and all the years after that, have in store for us.</p>
+                
+                <p class="signature">With all my heart, now and always,<br>
+                <strong>Your Tanushri 💕</strong></p>
+            </div>
+        </section>
+
+        <!-- Reasons I Love You Section -->
+        <section class="reasons-section fade-in">
+            <h2>💖 Reasons I Fall for You Every Day</h2>
+            <div class="reasons-grid">
+                <div class="reason-item">
+                    <span class="reason-icon">😊</span>
+                    <h4>Your Smile</h4>
+                    <p>The way your eyes light up when you smile could power entire cities. It's the first thing I think about when I wake up.</p>
+                </div>
+                <div class="reason-item">
+                    <span class="reason-icon">🤗</span>
+                    <h4>Your Kindness</h4>
+                    <p>How you treat everyone with compassion and understanding, always seeing the good in people.</p>
+                </div>
+                <div class="reason-item">
+                    <span class="reason-icon">🎯</span>
+                    <h4>Your Ambition</h4>
+                    <p>Watching you chase your dreams inspires me every day to be a better version of myself.</p>
+                </div>
+                <div class="reason-item">
+                    <span class="reason-icon">😂</span>
+                    <h4>Your Humor</h4>
+                    <p>You can make me laugh even on my worst days. Your laughter is my favorite sound in the world.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Music Section -->
+        <section class="music-section fade-in">
+            <h2>🎵 Our Love's Soundtrack</h2>
+            <div class="songs-list">
+                <div class="song-item">
+                    <span class="song-emoji">🎶</span>
+                    <div class="song-info">
+                        <strong>Perfect - Ed Sheeran</strong>
+                        <p>"We were just kids when we fell in love, not knowing what it was..."</p>
+                    </div>
+                </div>
+                <div class="song-item">
+                    <span class="song-emoji">🎶</span>
+                    <div class="song-info">
+                        <strong>Until I Found You - Stephen Sanchez</strong>
+                        <p>"I would never fall in love again until I found her. I said, 'I would never fall...'"</p>
+                    </div>
+                </div>
+                <div class="song-item">
+                    <span class="song-emoji">🎶</span>
+                    <div class="song-info">
+                        <strong>You Are The Reason - Calum Scott</strong>
+                        <p>"There goes my heart beating, 'cause you are the reason. I'm losing my sleep..."</p>
+                    </div>
+                </div>
+                <div class="song-item">
+                    <span class="song-emoji">🎶</span>
+                    <div class="song-info">
+                        <strong>All of Me - John Legend</strong>
+                        <p>"'Cause all of me loves all of you. Love your curves and all your edges..."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Future Dreams Section -->
+        <section class="future-section fade-in">
+            <h2>🌟 Our Tomorrows Together</h2>
+            <div class="future-dreams">
+                <p>I dream of so many beautiful things we'll experience together:</p>
+                <ul>
+                    <li>Taking millions more photos together, capturing every precious moment</li>
+                    <li>Watching sunsets hand in hand, in different places around the world</li>
+                    <li>Celebrating every anniversary bigger than the last, creating new traditions</li>
+                    <li>Building a home filled with love, laughter, and our shared memories</li>
+                    <li>Growing old together, still stealing kisses and holding hands like teenagers</li>
+                    <li>Supporting each other's dreams and celebrating every achievement</li>
+                    <li>Creating a lifetime of inside jokes that only we understand</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Final Message -->
+        <footer class="final-message fade-in">
+            <span class="heart-pulse">💗</span>
+            <h3>You are my favorite hello and my hardest goodbye.</h3>
+            <p>Thank you for the most amazing year of my life. Every moment with you feels like a beautiful dream I never want to wake up from.</p>
+            <p>I can't wait to see what the future holds for us. No matter what happens, I'll always choose you, today and every day.</p>
+            <div class="sign-off">
+                <p>Always and forever yours,</p>
+                <h4>Tanushri 💕</h4>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Floating elements creation
+        function createFloatingElements() {
+            const container = document.querySelector('.floating-elements');
+            const elements = ['💕', '💖', '✨', '🌟', '🎀', '🌸', '💫', '💌'];
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const element = document.createElement('div');
+                    element.className = 'floating-element';
+                    element.textContent = elements[Math.floor(Math.random() * elements.length)];
+                    element.style.left = Math.random() * 100 + 'vw';
+                    element.style.animationDelay = (Math.random() * 5) + 's';
+                    element.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                    element.style.fontSize = (Math.random() * 15 + 20) + 'px';
+                    container.appendChild(element);
+                    
+                    setTimeout(() => {
+                        element.remove();
+                    }, 13000);
+                }, i * 300);
+            }
+        }
+
+        // Time counter calculation
+        function updateTimeCounter() {
+            const startDate = new Date('2024-09-26T00:00:00');
+            const now = new Date();
+            const diff = now - startDate;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start creating floating elements
+            createFloatingElements();
+            setInterval(createFloatingElements, 4000);
+            
+            // Start time counter
+            updateTimeCounter();
+            setInterval(updateTimeCounter, 1000);
+            
+            // Add scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all fade-in elements
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
